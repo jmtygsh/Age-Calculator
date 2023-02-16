@@ -1,28 +1,35 @@
-function CalculateFun() {
+function Calculate_Date_Fun() {
     //Input
-    const UserDate = new Date(document.getElementById('userInput').value)
-    const PresentDate = new Date();
+    const user_DOB = new Date(document.getElementById('userInput').value)
+    const present_date = new Date();
+
 
     //Process 
-    const userTime = UserDate.getTime()
-    const presentTime = PresentDate.getTime()
+    function calculate_Year() {
+        let years = (present_date.getTime() - user_DOB.getTime());
+        return (years/31536000000);
+    }
+    const years_output = calculate_Year();
 
-    const CalculateDate = (presentTime - userTime);
-    const AnswerYear = (CalculateDate / 31536000000);
-    const AnswerDays = (CalculateDate / (1000 * 60 * 60 * 24));
+    function calculate_Day() {
+        let day = (present_date.getTime() - user_DOB.getTime());
+        return (day/(1000 * 60 * 60 * 24));
+    }
+    const days_output = calculate_Day();
 
-    function CalculateMonth(d1, d2) {
+    function calculate_Month(past, present) {
         var months;
-        months = (d2.getFullYear() - d1.getFullYear()) * 12;
-        months -= d1.getMonth();
-        months += d2.getMonth();
+        months = (present.getFullYear() - past.getFullYear()) * 12;
+        months -= past.getMonth();
+        months += present.getMonth();
         return months;
     }
-    const AnswerMonth = CalculateMonth(UserDate, PresentDate);
+    const months_output = calculate_Month(user_DOB, present_date);
+
 
     //output
-    document.getElementById('output2').innerHTML = Math.round(AnswerDays) + "Days";
-    document.getElementById('output3').innerHTML = Math.round(AnswerMonth) + "Month";
-    document.getElementById('output').innerHTML = Math.round(AnswerYear) + "Years";
+    document.getElementById('output2').innerHTML = Math.round(days_output) + "Days";
+    document.getElementById('output3').innerHTML = Math.round(months_output) + "Month";
+    document.getElementById('output').innerHTML = Math.round(years_output) + "Years";
 
 }
