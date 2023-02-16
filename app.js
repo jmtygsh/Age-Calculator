@@ -11,11 +11,13 @@ function Calculate_Date_Fun() {
     }
     const years_output = calculate_Year();
 
+    
     function calculate_Day() {
         let day = (present_date.getTime() - user_DOB.getTime());
         return (day/(1000 * 60 * 60 * 24));
     }
     const days_output = calculate_Day();
+
 
     function calculate_Month(past, present) {
         var months;
